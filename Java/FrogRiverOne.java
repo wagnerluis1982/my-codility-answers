@@ -1,4 +1,4 @@
-// you can also use imports, for example:
+// https://app.codility.com/demo/results/trainingBRHYHJ-QDR/
 import java.util.*;
 import java.util.stream.*;
 
