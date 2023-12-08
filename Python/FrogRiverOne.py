@@ -1,4 +1,5 @@
 # https://app.codility.com/demo/results/trainingK9PKK5-364/
+
 def solution(X, A):
     positions = set(e for e in A if e <= X)
 
