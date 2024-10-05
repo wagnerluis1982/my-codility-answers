@@ -4,6 +4,8 @@
 # Correctness  100%
 # Performance  100%
 
+# Detected time complexity: O(N * log(N))
+
 def solution(A: list) -> int:
     if len(A) == 3:
         return A[0] * A[1] * A[2]
