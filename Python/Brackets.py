@@ -1,8 +1,8 @@
-# https://app.codility.com/demo/results/training8W8V75-GVY/
+# https://app.codility.com/demo/results/trainingXBZNVP-3QX/
 
-# Task Score    62%
-# Correctness   33%
-# Performance   80%
+# Task Score   100%
+# Correctness  100%
+# Performance  100%
 
 MATCHES = (
     ('(', ')'),
@@ -26,4 +26,4 @@ def solution(S: str) -> int:
         else:
             stack.append(c)
 
-    return 1
+    return 0 if stack else 1
