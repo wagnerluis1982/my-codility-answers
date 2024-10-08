@@ -1,7 +1,7 @@
-# https://app.codility.com/demo/results/trainingR6ZS9S-BSV/
+# https://app.codility.com/demo/results/trainingJ8X9JX-TG2/
 
-# Task Score    22%
-# Correctness   40%
+# Task Score    33%
+# Correctness   60%
 # Performance    0%
 
 from collections import defaultdict
@@ -19,7 +19,7 @@ def solution(A: list) -> int:
         if A[s] == leader:
             count += 1
             S = s + 1
-            if count > S // 2 and N - S >= N // 2 and leader == find_leader(A, S, N):
+            if count > S // 2 and leader == find_leader(A, S, N):
                 equileaders += 1
 
     return equileaders
@@ -30,7 +30,7 @@ def find_leader(A: list, M: int, N: int) -> int:
 
     L = N - M
     if L == 1:
-        return A[0]
+        leader = A[M]
     else:
         count = defaultdict(int)
         for i in range(M, N):
