@@ -4,7 +4,7 @@
 # Correctness  100%
 # Performance  100%
 
-def solution(H: list):
+def solution(H: list) -> int:
     N = len(H)  # width
     if N == 1:
         return 1
