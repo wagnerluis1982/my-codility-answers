@@ -1,43 +1,40 @@
-# https://app.codility.com/demo/results/trainingU4J3VP-7XY/
+# https://app.codility.com/demo/results/trainingMHZD67-7RQ/
 
-# Task Score    66%
-# Correctness  100%
-# Performance   25%
+# Task Score    22%
+# Correctness   40%
+# Performance    0%
 
 from collections import defaultdict
 
 
 def solution(A: list) -> int:
     N = len(A)
-    leader = find_leader(A, 0, N)
+    leader, count = leader_and_count(A, 0, N)
     if leader is None:
         return 0
 
-    count = 0
+    left = 0
     equileaders = 0
     for s in range(N):
         if A[s] == leader:
-            count += 1
-        S = s + 1
-        if count > S // 2 and leader == find_leader(A, S, N):
-            equileaders += 1
+            left += 1
+            s += 1
+            if left > s // 2 and count - left > (N - s) // 2:
+                equileaders += 1
 
     return equileaders
 
 
-def find_leader(A: list, M: int, N: int) -> int:
+def leader_and_count(A: list, M: int, N: int) -> tuple:
     leader = None
+    count = defaultdict(int)
 
     L = N - M
-    if L == 1:
-        leader = A[M]
-    else:
-        count = defaultdict(int)
-        for i in range(M, N):
-            n = A[i]
-            count[n] += 1
-            if count[n] > L // 2:
-                leader = n
-                break
+    for i in range(M, N):
+        n = A[i]
+        count[n] += 1
+        if count[n] > L // 2:
+            leader = n
+            break
 
-    return leader
+    return leader, count[leader]
