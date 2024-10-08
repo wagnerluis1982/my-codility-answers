@@ -1,7 +1,7 @@
-# https://app.codility.com/demo/results/training2VRAYE-9PC/
+# https://app.codility.com/demo/results/trainingR6ZS9S-BSV/
 
-# Task Score    11%
-# Correctness   20%
+# Task Score    22%
+# Correctness   40%
 # Performance    0%
 
 from collections import defaultdict
@@ -31,7 +31,7 @@ def find_leader(A: list, M: int, N: int) -> int:
     L = N - M
     if L == 1:
         return A[0]
-    elif L != 2:
+    else:
         count = defaultdict(int)
         for i in range(M, N):
             n = A[i]
