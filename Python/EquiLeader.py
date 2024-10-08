@@ -1,8 +1,8 @@
-# https://app.codility.com/demo/results/trainingKRPJ6J-M9X/
+# https://app.codility.com/demo/results/trainingA222BR-5FV/
 
-# Task Score    44%
-# Correctness   60%
-# Performance   25%
+# Task Score   100%
+# Correctness  100%
+# Performance  100%
 
 from collections import defaultdict
 
@@ -33,8 +33,7 @@ def leader_and_count(A: list, M: int, N: int) -> tuple:
     for i in range(M, N):
         n = A[i]
         count[n] += 1
-        if count[n] > L // 2:
+        if not leader and count[n] > L // 2:
             leader = n
-            break
 
     return leader, count[leader]
