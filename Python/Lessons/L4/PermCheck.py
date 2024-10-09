@@ -1,7 +1,10 @@
 # https://app.codility.com/demo/results/training85VG4P-PA7/
 
-def solution(A):
-    # Implement your solution here
+# Task Score   100%
+# Correctness  100%
+# Performance  100%
+
+def solution(A: list) -> int:
     A.sort()
     N = 1
     for e in A:

@@ -1,6 +1,10 @@
 # https://app.codility.com/demo/results/trainingRDPEBY-Z9E/
 
-def solution(A):
+# Task Score   100%
+# Correctness  100%
+# Performance  100%
+
+def solution(A: list) -> int:
     A.sort()
     seq = 1
     last = 0
