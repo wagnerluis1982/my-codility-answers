@@ -1,23 +1,27 @@
-# https://app.codility.com/demo/results/training4V5JQD-WRY/
+# https://app.codility.com/demo/results/trainingJHUPW6-A2X/
 
 # Task Score    62%
 # Correctness  100%
 # Performance    0%
 
 def solution(S: str, P: list, Q: list) -> list:
-    factor = {'A': 1, 'C': 2, 'G': 3, 'T': 4}
+    return [calc_impact(S, P, Q, k) for k in range(min((len(P), len(Q))))]
 
-    def calcImpact(k: int) -> int:
-        impacts = set()
-        for i in range(P[k], Q[k] + 1):
-            n = factor[S[i]]
-            if n == 1:
-                return 1
 
-            impacts.add(n)
-            if len(impacts) == 4:
-                return 1
+def calc_impact(S: str, P: list, Q: list, k: int) -> int:
+    nucleotides = set()
+    for i in range(P[k], Q[k] + 1):
+        nct = S[i]
+        if nct == 'A':
+            return 1
 
-        return min(impacts)
+        nucleotides.add(nct)
+        if len(nucleotides) == 4:
+            return 1
 
-    return [calcImpact(k) for k in range(min([len(P), len(Q)]))]
+    if 'C' in nucleotides:
+        return 2
+    elif 'G' in nucleotides:
+        return 3
+    else:
+        return 4
