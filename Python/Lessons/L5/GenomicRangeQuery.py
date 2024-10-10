@@ -1,20 +1,20 @@
-# https://app.codility.com/demo/results/trainingSX237A-2CJ/
+# https://app.codility.com/demo/results/trainingU2WSYZ-W5E/
 
-# Task Score    62%
+# Source: https://stackoverflow.com/a/58476097/3707418
+
+# Task Score   100%
 # Correctness  100%
-# Performance    0%
+# Performance  100%
 
-def solution(S: str, P: list, Q: list) -> list:
-    T = [impact(s) for s in S]
-    return [min(T[P[k]:Q[k]+1]) for k in range(min((len(P), len(Q))))]
-
-
-def impact(s: str) -> int:
-    if s == 'A':
-        return 1
-    elif s == 'C':
-        return 2
-    elif s == 'G':
-        return 3
-    else:
-        return 4
+def solution(S, P, Q):
+    res = []
+    for i in range(len(P)):
+        if 'A' in S[P[i]:Q[i]+1]:
+            res.append(1)
+        elif 'C' in S[P[i]:Q[i]+1]:
+            res.append(2)
+        elif 'G' in S[P[i]:Q[i]+1]:
+            res.append(3)
+        else:
+            res.append(4)
+    return res
