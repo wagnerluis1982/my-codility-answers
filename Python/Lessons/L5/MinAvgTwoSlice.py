@@ -1,23 +1,39 @@
-# https://app.codility.com/demo/results/trainingHF7ZF7-6XU/
+# https://app.codility.com/demo/results/training7QCDAZ-RAB/
 
-# Task Score    60%
-# Correctness  100%
-# Performance   20%
+# Task Score    50%
+# Correctness   60%
+# Performance   40%
 
 def solution(A: list) -> int:
-    table = []
+    N = len(A)
+    P = prefix_sums(A, N)
 
-    for i in range(len(A)):
-        is_last = i == len(A) - 1
-        if not is_last:
-            table.insert(i, [A[i]])
+    index = 0
+    x, y = 0, 1
+    lesser = slice(P, x, y)
+    while y < N:
+        calc = slice(P, x, y)
+        if calc <= lesser:
+            lesser = calc
+            index = x
+            y += 1
+        else:
+            x, y = x + 1, x + 2
 
-        for j in range(i):
-            table[j].append(A[i] + table[j][-1])
-            table[j][-2] /= (i - j)
+    return index
 
-            if is_last:
-                table[j][-1] /= (i - j + 1)
-                table[j] = min(table[j][1:])
 
-    return min(range(len(table)), key=table.__getitem__)
+def prefix_sums(A: list, N: int) -> list:
+    P = [0] * (N + 1)
+    for k in range(1, N + 1):
+        P[k] = P[k - 1] + A[k - 1]
+    return P
+
+
+def slice(P: list, x: int, y: int) -> int:
+    if x > y:
+        raise Exception(f"Invalid range: x={x} > y={y}")
+    try:
+        return P[y + 1] - P[x]
+    except IndexError:
+        raise Exception(f"Invalid index: x={x}, y+1={y + 1}")
