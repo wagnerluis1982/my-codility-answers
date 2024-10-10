@@ -1,4 +1,4 @@
-# https://app.codility.com/demo/results/trainingFM4UP8-7VQ/
+# https://app.codility.com/demo/results/training4V5JQD-WRY/
 
 # Task Score    62%
 # Correctness  100%
@@ -7,12 +7,17 @@
 def solution(S: str, P: list, Q: list) -> list:
     factor = {'A': 1, 'C': 2, 'G': 3, 'T': 4}
 
-    def impact(k: int) -> int:
-        r = 4
+    def calcImpact(k: int) -> int:
+        impacts = set()
         for i in range(P[k], Q[k] + 1):
-            r = min((r, factor[S[i]]))
-            if r == 1:
-                break
-        return r
+            n = factor[S[i]]
+            if n == 1:
+                return 1
 
-    return [impact(k) for k in range(min([len(P), len(Q)]))]
+            impacts.add(n)
+            if len(impacts) == 4:
+                return 1
+
+        return min(impacts)
+
+    return [calcImpact(k) for k in range(min([len(P), len(Q)]))]
