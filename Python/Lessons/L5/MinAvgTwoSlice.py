@@ -1,21 +1,20 @@
-# https://app.codility.com/demo/results/trainingDSE27E-GBF/
+# https://app.codility.com/demo/results/trainingV8H46U-VFN/
 
-# Task Score    60%
+# Task Score    50%
 # Correctness  100%
-# Performance   20%
+# Performance    0%
 
 def solution(A: list) -> int:
     N = len(A)
     P = prefix_sums(A, N)
+    V = prefix_averages(P, N)
 
     index = 0
-    lesser = slice(P, 0, 1)
+    lesser = V[0][1]
     x, y = 0, 2
     while y < N:
-        calc = slice(P, x, y)
-
-        if calc < lesser:
-            lesser = calc
+        if V[x][y] < lesser:
+            lesser = V[x][y]
             index = x
 
         y += 1
@@ -31,6 +30,13 @@ def prefix_sums(A: list, N: int) -> list:
         P[k] = P[k - 1] + A[k - 1]
     return P
 
+
+def prefix_averages(P: list, N: int) -> list:
+    V = [[0] * N for _ in range(N)]
+    for i in range(0, N - 1):
+        for j in range(i + 1, N):
+            V[i][j] = slice(P, i, j)
+    return V
 
 def slice(P: list, x: int, y: int) -> float:
     if x > y:
