@@ -1,14 +1,29 @@
-# https://app.codility.com/demo/results/trainingBVB929-T34/
+# https://app.codility.com/demo/results/trainingMNRMNE-YY5/
 
 # Task Score   100%
 # Correctness  100%
 # Performance  100%
 
-# Detected time complexity: O(N * log(N))
+# Detected time complexity: O(N * log(N)) <~ It should be O(n) 🙁
 
 def solution(A: list) -> int:
-    if len(A) == 3:
-        return A[0] * A[1] * A[2]
+    a = b = 1000
+    x = y = z = -1000
 
-    A.sort()
-    return max(A[0] * A[1] * A[-1], A[-3] * A[-2] * A[-1])
+    for i in range(len(A)):
+        if A[i] < a:
+            b = a
+            a = A[i]
+        elif A[i] < b:
+            b = A[i]
+
+        if A[i] > z:
+            x, y = y, z
+            z = A[i]
+        elif A[i] > y:
+            x = y
+            y = A[i]
+        elif A[i] > x:
+            x = A[i]
+
+    return max(a * b * z, x * y * z)
