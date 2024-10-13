@@ -1,25 +1,30 @@
-# https://app.codility.com/demo/results/training2V594V-THF/
+# https://app.codility.com/demo/results/trainingJ2TKMW-WYB/
 
-# Task Score    12%
-# Correctness   25%
-# Performance    0%
-
-# [1, 1, 1] ~> got 1 expected 3
+# Task Score    56%
+# Correctness  100%
+# Performance   12%
 
 THRESHOLD = 10_000_000
 
+
 def solution(A: list) -> int:
     N = len(A)
+    intersects = [set() for _ in range(N)]
+    for j in range(N):
+        for k in range(max(0, j - A[j]), min(N, j + A[j] + 1)):
+            if j != k:
+                intersects[k].add(j)
 
-    intersects = set()
-    for j in range(0, N - 1):
-        if A[j] > 0:
-            for k in range(max(0, j - A[j]), min(N, j + A[j])):
-                if j == k:
-                    continue
-                point = (j, k) if j < k else (k, j)
-                intersects.add(point)
-                if len(intersects) > THRESHOLD:
-                    return -1
+    pairs = set()
+    for j, points in enumerate(intersects):
+        for k in points:
+            pairs.add((j, k) if j < k else (k, j))
+            if len(pairs) > THRESHOLD:
+                return -1
+            for l in points:
+                if k != l:
+                    pairs.add((k, l) if k < l else (l, k))
+                    if len(pairs) > THRESHOLD:
+                        return -1
 
-    return len(intersects)
+    return len(pairs)
