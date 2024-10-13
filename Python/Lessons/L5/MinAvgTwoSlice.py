@@ -1,8 +1,8 @@
-# https://app.codility.com/demo/results/trainingPV5YF2-VSJ/
+# https://app.codility.com/demo/results/trainingYEJ9AW-YKZ/
 
-# Task Score    60%
+# Task Score   100%
 # Correctness  100%
-# Performance   20%
+# Performance  100%
 
 def solution(A: list) -> int:
     N = len(A)
@@ -11,13 +11,10 @@ def solution(A: list) -> int:
     for k in range(1, N + 1):
         S[k] = S[k - 1] + A[k - 1]
 
-    started = set()
     index = 0
     lowest = slice(S, 0, 1)
     for p in range(N - 1):
-        q = p + 1
-        started.add(p)
-        for p in started:
+        for q in (p + 1, min(p + 2, N - 1)):
             avg = slice(S, p, q)
             if avg < lowest:
                 lowest = avg
