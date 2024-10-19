@@ -1,12 +1,10 @@
-# https://app.codility.com/demo/results/trainingRKQ338-UBX/
+# https://app.codility.com/demo/results/training2FXW4J-S58/
 
-# Task Score    62%
-# Correctness   50%
-# Performance   75%
+# Task Score    87%
+# Correctness   75%
+# Performance  100%
 
-# [12, 21] ~> got 12 expected 4
-
-import math
+from math import gcd
 
 
 def solution(N: int, M: int) -> int:
@@ -16,13 +14,15 @@ def solution(N: int, M: int) -> int:
     if N < M:
         if M % N == 0:
             return 1
+        else:
+            return N // gcd(N, M)
     else:
         if N % M == 0:
             return N // M
         elif N % 2 == 0 and M % 2 == 0:
-            return N // math.gcd(N, M)
+            return N // gcd(N, M)
 
     if M % 2 == 1:
         return N
 
-    return math.gcd(N, M)
+    return gcd(N, M)
