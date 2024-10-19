@@ -1,7 +1,7 @@
-# https://app.codility.com/demo/results/trainingWCCP2R-AE7/
+# https://app.codility.com/demo/results/trainingCFWXNY-HVG/
 
-# Task Score    60%
-# Correctness   60%
+# Task Score   100%
+# Correctness  100%
 # Performance    -
 
 def solution(S: str):
@@ -24,5 +24,8 @@ def solution(S: str):
         if state == "PW":
             digits += c.isdigit()
             letters += c.isalpha()
+
+    if state == "PW" and letters % 2 == 0 and digits % 2 == 1:
+        max_password = max(max_password, letters + digits)
 
     return max_password
