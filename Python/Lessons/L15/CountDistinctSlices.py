@@ -1,8 +1,11 @@
-# https://app.codility.com/demo/results/trainingT8UU2Z-9TD/
+# https://app.codility.com/demo/results/trainingCGMRYQ-H24/
 
 # Task Score    30%
 # Correctness   40%
 # Performance   20%
+
+THRESHOLD = 1_000_000_000
+
 
 def solution(M: int, A: list) -> int:
     N = len(A)
@@ -19,6 +22,8 @@ def solution(M: int, A: list) -> int:
                 p += 1
             B.discard(A[p])
             count += max(0, q - p - 1)
+            if count > THRESHOLD:
+                return THRESHOLD
             p = q
             B.clear()
         B.add(A[q])
