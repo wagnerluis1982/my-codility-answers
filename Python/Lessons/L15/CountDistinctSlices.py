@@ -1,8 +1,10 @@
-# https://app.codility.com/demo/results/trainingCGMRYQ-H24/
+# https://app.codility.com/demo/results/trainingW6DHBV-JUR/
 
-# Task Score    30%
-# Correctness   40%
-# Performance   20%
+# Source: https://github.com/Mickey0521/Codility-Python/blob/master/CountDistinctSlices_high_performance.py
+
+# Task Score   100%
+# Correctness  100%
+# Performance  100%
 
 THRESHOLD = 1_000_000_000
 
@@ -15,24 +17,14 @@ def solution(M: int, A: list) -> int:
     p = 0
     q = 0
     while p <= q < N:
-        if A[q] in B:
-            count += count_pairs(B)
-            while p <= q and A[p] != A[q]:
-                B.discard(A[p])
-                p += 1
-            B.discard(A[p])
-            count += max(0, q - p - 1)
+        if A[q] not in B:
+            count += q - p + 1
             if count > THRESHOLD:
                 return THRESHOLD
-            p = q
-            B.clear()
-        B.add(A[q])
-        q += 1
+            B.add(A[q])
+            q += 1
+        else:
+            B.remove(A[p])
+            p += 1
 
-    count += count_pairs(B)
     return count
-
-
-def count_pairs(B: set) -> int:
-    n = len(B)
-    return (n * (n + 1)) // 2
