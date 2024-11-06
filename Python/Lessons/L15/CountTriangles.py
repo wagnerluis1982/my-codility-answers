@@ -1,27 +1,23 @@
-# https://app.codility.com/demo/results/trainingAF6SND-S7K/
+# https://app.codility.com/demo/results/trainingPQ3AD7-E9Q/
 
-# Task Score    63%
-# Correctness  100%
+# Task Score    45%
+# Correctness   71%
 # Performance    0%
 
 def solution(A: list) -> int:
     N = len(A)
+
     count = 0
-
-    p = 0
-    q = 1
-    r = 2
-    while p < q < r < N:
-        if A[p] + A[q] > A[r] and A[q] + A[r] > A[p] and A[r] + A[p] > A[q]:
-            count += 1
-
-        r += 1
-        if r == N:
-            q += 1
-            r = q + 1
-            if r == N:
-                p += 1
-                q = p + 1
-                r = p + 2
+    for x in range(N):
+        z = x + 2
+        for y in range(x + 1, N):
+            while (
+                z < N
+                and A[x] + A[y] > A[z]
+                and A[y] + A[z] > A[x]
+                and A[z] + A[x] > A[y]
+            ):
+                z += 1
+                count += 1
 
     return count
