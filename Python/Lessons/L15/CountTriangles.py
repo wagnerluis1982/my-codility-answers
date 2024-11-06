@@ -1,11 +1,12 @@
-# https://app.codility.com/demo/results/trainingPQ3AD7-E9Q/
+# https://app.codility.com/demo/results/trainingJC6K4R-F5K/
 
-# Task Score    45%
-# Correctness   71%
-# Performance    0%
+# Task Score   100%
+# Correctness  100%
+# Performance  100%
 
 def solution(A: list) -> int:
     N = len(A)
+    A.sort()
 
     count = 0
     for x in range(N):
@@ -18,6 +19,6 @@ def solution(A: list) -> int:
                 and A[z] + A[x] > A[y]
             ):
                 z += 1
-                count += 1
+            count += z - y - 1
 
     return count
